@@ -123,13 +123,6 @@ This model works well in the following scenarios:
 
 With Eleven v3 comes a new Text to Dialogue API, which allows you to generate natural, lifelike dialogue with high emotional range and contextual understanding across multiple languages. Eleven v3 can also be used with the Text to Speech API to generate natural, lifelike speech with high emotional range and contextual understanding across multiple languages.
 
-<Warning>
-  Eleven v3 API access is currently not publicly available, but will be soon. To
-  request access, please [contact our sales
-  team](https://elevenlabs.io/contact-sales).
-</Warning>
-
-Read more about the Text to Dialogue API [here](/docs/capabilities/text-to-dialogue).
 
 ### Model selection
 
@@ -326,34 +319,6 @@ As a general rule of thumb, a concurrency limit of 5 can typically support up to
 
 This is because of the speed it takes for audio to be generated relative to the time it takes for the TTS request to be processed.
 The diagram below is an example of how 4 concurrent calls with different users can be facilitated while only hitting 2 concurrent requests.
-
-<Frame background="subtle">
-  <img
-    src="file:adf189c7-1144-40fc-bafe-fc4a037e1f45"
-    alt="Concurrency limits"
-  />
-</Frame>
-
-<AccordionGroup>
-  <Accordion title="Building AI Voice Agents">
-      Where TTS is used to facilitate dialogue, a concurrency limit of 5 can support about 100 broadcasts for balanced conversations between AI agents and human participants.
-
-      For use cases in which the AI agent speaks less frequently than the human, such as customer support interactions, more than 100 simultaneous conversations could be supported.
-
-  </Accordion>
-  <Accordion title="Character voiceovers">
-      Generally, more than 100 simultaneous character voiceovers can be supported for a concurrency limit of 5.
-
-      The number can vary depending on the character’s dialogue frequency, the length of pauses, and in-game actions between lines.
-
-  </Accordion>
-  <Accordion title="Live Dubbing">
-      Concurrent dubbing streams generally follow the provided heuristic.
-
-      If the broadcast involves periods of conversational pauses (e.g. because of a soundtrack, visual scenes, etc), more simultaneous dubbing streams than the suggestion may be possible.
-
-  </Accordion>
-</AccordionGroup>
 
 If you exceed your plan's concurrency limits at any point and you are on the Enterprise plan, model requests may still succeed, albeit slower, on a best efforts basis depending on available capacity.
 
