@@ -43,7 +43,26 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Overview",
+          "href": "/",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Quickstart",
+          "href": "/quickstart",
+          "icon": "newspaper"
+        },
+        {
+          "anchor": "Models",
+          "href": "/models",
+          "icon": "slack"
+        }
+      ]
+    }
   },
   "logo": {
     "light": "/logo/light.svg",
