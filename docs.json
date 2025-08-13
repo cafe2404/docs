@@ -35,18 +35,11 @@
           {
             "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/create",
+              "api-reference/endpoint/user",
+              "api-reference/endpoint/text2speech",
               "api-reference/endpoint/models",
               "api-reference/endpoint/voices",
-              "api-reference/endpoint/user",
-              "api-reference/endpoint/get"
-            ]
-          },
-          {
-            "group": "Additional Endpoints",
-            "pages": [
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/history"
             ]
           }
         ]
