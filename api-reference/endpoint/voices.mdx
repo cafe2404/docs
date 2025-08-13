@@ -9,14 +9,14 @@ Retrieve a list of all available voices.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.ttslab.com/api/voices/" \
+curl -X GET "https://api.app.elvenlabs8.com/api/voices/" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
 ```python
 import requests
 
-url = "https://api.ttslab.com/api/voices/"
+url = "https://api.app.elvenlabs8.com/api/voices/"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
@@ -28,7 +28,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.ttslab.com/api/voices/';
+const url = 'https://api.app.elvenlabs8.com/api/voices/';
 const headers = {
     'X-API-KEY': 'your_api_key_here'
 };
@@ -90,7 +90,7 @@ fetch(url, { headers })
       },
       "labels": {},
       "description": "Professional female voice",
-      "preview_url": "https://api.ttslab.com/media/samples/rachel.mp3",
+      "preview_url": "https://api.app.elvenlabs8.com/media/samples/rachel.mp3",
       "available_for_tiers": ["free", "pro"],
       "settings": {
         "stability": 0.5,
@@ -117,7 +117,7 @@ fetch(url, { headers })
         "featured": false,
         "category": "generated",
         "reader_app_enabled": true,
-        "image_url": "https://api.ttslab.com/media/avatars/rachel.jpg",
+        "image_url": "https://api.app.elvenlabs8.com/media/avatars/rachel.jpg",
         "ban_reason": null,
         "liked_by_count": 0,
         "cloned_by_count": 0,
@@ -151,7 +151,7 @@ fetch(url, { headers })
           "model_id": "eleven_v3",
           "accent": "american",
           "locale": "en-US",
-          "preview_url": "https://api.ttslab.com/media/samples/rachel_en.mp3"
+          "preview_url": "https://api.app.elvenlabs8.com/media/samples/rachel_en.mp3"
         }
       ],
       "safety_control": "NONE",
@@ -183,7 +183,7 @@ Retrieve details of a specific voice.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.ttslab.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
+curl -X GET "https://api.app.elvenlabs8.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
@@ -191,7 +191,7 @@ curl -X GET "https://api.ttslab.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
 import requests
 
 voice_id = "JBFqnCBsd6RMkjVDRZzb"
-url = f"https://api.ttslab.com/api/voices/{voice_id}"
+url = f"https://api.app.elvenlabs8.com/api/voices/{voice_id}"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
@@ -250,7 +250,7 @@ print(response.json())
   },
   "labels": {},
   "description": "Professional female voice",
-  "preview_url": "https://api.ttslab.com/media/samples/rachel.mp3",
+  "preview_url": "https://api.app.elvenlabs8.com/media/samples/rachel.mp3",
   "available_for_tiers": ["free", "pro"],
   "settings": {
     "stability": 0.5,
@@ -277,7 +277,7 @@ print(response.json())
     "featured": false,
     "category": "generated",
     "reader_app_enabled": true,
-    "image_url": "https://api.ttslab.com/media/avatars/rachel.jpg",
+    "image_url": "https://api.app.elvenlabs8.com/media/avatars/rachel.jpg",
     "ban_reason": null,
     "liked_by_count": 0,
     "cloned_by_count": 0,
@@ -311,7 +311,7 @@ print(response.json())
       "model_id": "eleven_v3",
       "accent": "american",
       "locale": "en-US",
-      "preview_url": "https://api.ttslab.com/media/samples/rachel_en.mp3"
+      "preview_url": "https://api.app.elvenlabs8.com/media/samples/rachel_en.mp3"
     }
   ],
   "safety_control": "NONE",

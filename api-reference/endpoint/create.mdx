@@ -9,7 +9,7 @@ Convert text to speech using TTSLab's advanced AI models.
 
 <RequestExample>
 ```bash
-curl -X POST "https://api.ttslab.com/v1/text-to-speech" \
+curl -X POST "https://api.app.elvenlabs8.com/v1/text-to-speech" \
   -H "X-API-KEY: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -24,7 +24,7 @@ curl -X POST "https://api.ttslab.com/v1/text-to-speech" \
 ```python
 import requests
 
-url = "https://api.ttslab.com/v1/text-to-speech"
+url = "https://api.app.elvenlabs8.com/v1/text-to-speech"
 headers = {
     "X-API-KEY": "your_api_key_here",
     "Content-Type": "application/json"
@@ -60,7 +60,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.ttslab.com/v1/text-to-speech';
+const url = 'https://api.app.elvenlabs8.com/v1/text-to-speech';
 const headers = {
     'X-API-KEY': 'your_api_key_here',
     'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ fetch(url, {
     "id": "history_id_123",
     "user": {
       "fullname": "John Doe",
-      "avatar": "https://api.ttslab.com/media/avatars/john.jpg"
+      "avatar": "https://api.app.elvenlabs8.com/media/avatars/john.jpg"
     },
     "history_id": "unique_history_id",
     "prompt": "Hello, this is a test message.",
@@ -150,9 +150,9 @@ fetch(url, {
     },
     "credits_used": 1,
     "status": "completed",
-    "shared_url": "https://ttslab.com/share/audio_id",
+    "shared_url": "https://app.elvenlabs8.com/share/audio_id",
     "created_at": "2024-01-01T12:00:00Z",
-    "audio_url": "https://api.ttslab.com/media/audio/output.mp3"
+    "audio_url": "https://api.app.elvenlabs8.com/media/audio/output.mp3"
   },
   "message": "Audio generated successfully"
 }
