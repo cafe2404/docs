@@ -1,4 +1,196 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: Text-to-Speech
+subtitle: Convert text to speech
 ---
+
+## Convert Text to Speech
+
+Convert text to speech using TTSLab's advanced AI models.
+
+<RequestExample>
+```bash
+curl -X POST "https://api.ttslab.com/v1/text-to-speech" \
+  -H "X-API-KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "inputs": {
+      "text": "Hello, this is a test message.",
+      "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+    },
+    "model_id": "eleven_v3"
+  }'
+```
+
+```python
+import requests
+
+url = "https://api.ttslab.com/v1/text-to-speech"
+headers = {
+    "X-API-KEY": "your_api_key_here",
+    "Content-Type": "application/json"
+}
+
+# For v3 models
+data = {
+    "inputs": {
+        "text": "Hello, this is a test message.",
+        "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+    },
+    "model_id": "eleven_v3"
+}
+
+# For v1/v2 models
+# data = {
+#     "text": "Hello, this is a test message.",
+#     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+#     "model_id": "eleven_flash_v2_5",
+#     "output_format": "mp3_44100_128",
+#     "config": {
+#         "stability": 0.5,
+#         "similarity_boost": 0.75,
+#         "style": 0.0,
+#         "use_speaker_boost": true
+#     }
+# }
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+```javascript
+const fetch = require('node-fetch');
+
+const url = 'https://api.ttslab.com/v1/text-to-speech';
+const headers = {
+    'X-API-KEY': 'your_api_key_here',
+    'Content-Type': 'application/json'
+};
+
+// For v3 models
+const data = {
+    inputs: {
+        text: 'Hello, this is a test message.',
+        voice_id: 'JBFqnCBsd6RMkjVDRZzb'
+    },
+    model_id: 'eleven_v3'
+};
+
+// For v1/v2 models
+// const data = {
+//     text: 'Hello, this is a test message.',
+//     voice_id: 'JBFqnCBsd6RMkjVDRZzb',
+//     model_id: 'eleven_flash_v2_5',
+//     output_format: 'mp3_44100_128',
+//     config: {
+//         stability: 0.5,
+//         similarity_boost: 0.75,
+//         style: 0.0,
+//         use_speaker_boost: true
+//     }
+// };
+
+fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+</RequestExample>
+
+### Request Parameters
+
+#### v3 Models
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `inputs.text` | string | Yes | Text to convert to speech |
+| `inputs.voice_id` | string | Yes | Voice ID to use |
+| `model_id` | string | Yes | Model ID (e.g., "eleven_v3") |
+
+#### v1/v2 Models
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | Yes | Text to convert to speech |
+| `voice_id` | string | Yes | Voice ID to use |
+| `model_id` | string | Yes | Model ID (e.g., "eleven_flash_v2_5") |
+| `output_format` | string | No | Audio format (default: "mp3_44100_128") |
+| `config` | object | No | Voice configuration settings |
+
+### Config Parameters (v1/v2 only)
+
+| Parameter | Type | Range | Description |
+|-----------|------|-------|-------------|
+| `stability` | float | 0.0 - 1.0 | Controls voice consistency |
+| `similarity_boost` | float | 0.0 - 1.0 | Controls voice similarity to original |
+| `style` | float | 0.0 - 1.0 | Controls speaking style |
+| `use_speaker_boost` | boolean | - | Enhances speaker clarity |
+
+### Response
+
+<ResponseExample>
+```json
+{
+  "success": true,
+  "data": {
+    "id": "history_id_123",
+    "user": {
+      "fullname": "John Doe",
+      "avatar": "https://api.ttslab.com/media/avatars/john.jpg"
+    },
+    "history_id": "unique_history_id",
+    "prompt": "Hello, this is a test message.",
+    "model": "eleven_v3",
+    "voice": "Rachel",
+    "config": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0.0,
+      "use_speaker_boost": true
+    },
+    "credits_used": 1,
+    "status": "completed",
+    "shared_url": "https://ttslab.com/share/audio_id",
+    "created_at": "2024-01-01T12:00:00Z",
+    "audio_url": "https://api.ttslab.com/media/audio/output.mp3"
+  },
+  "message": "Audio generated successfully"
+}
+```
+</ResponseExample>
+
+### Downloading the Audio
+
+To get the actual audio file, make a GET request to the `audio_url`:
+
+```python
+# Download the audio file
+audio_response = requests.get(response.json()["data"]["audio_url"])
+with open("output.mp3", "wb") as f:
+    f.write(audio_response.content)
+```
+
+### Error Responses
+
+<ResponseExample>
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_VOICE_ID",
+    "message": "Voice ID not found"
+  }
+}
+```
+</ResponseExample>
+
+### Common Error Codes
+
+| Code | Description |
+|------|-------------|
+| `INVALID_API_KEY` | Invalid or missing API key |
+| `INVALID_VOICE_ID` | Voice ID not found |
+| `INVALID_MODEL_ID` | Model ID not found |
+| `TEXT_TOO_LONG` | Text exceeds maximum length |
+| `INSUFFICIENT_CREDITS` | Not enough credits |
+| `RATE_LIMIT_EXCEEDED` | Rate limit exceeded |

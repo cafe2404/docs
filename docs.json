@@ -33,10 +33,17 @@
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Core Endpoints",
             "pages": [
-              "api-reference/endpoint/get",
               "api-reference/endpoint/create",
+              "api-reference/endpoint/models",
+              "api-reference/endpoint/voices",
+              "api-reference/endpoint/get"
+            ]
+          },
+          {
+            "group": "Additional Endpoints",
+            "pages": [
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
             ]

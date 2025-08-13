@@ -1,23 +1,105 @@
 ---
 title: Introduction
-subtitle: Welcome to the ElevenLabs API reference.
+subtitle: Welcome to the TTSLab API reference.
 hide-feedback: true
 ---
 
 ## Installation
 
-You can interact with the API through HTTP or Websocket requests from any language, via our official Python bindings or our official Node.js libraries.
+You can interact with the TTSLab API through HTTP requests from any language. For Python, we recommend using the `requests` library with a virtual environment.
 
-To install the official Python bindings, run the following command:
+### Python Setup
+
+Create a virtual environment and install requests:
 
 ```bash
-pip install elevenlabs
+# Create virtual environment
+python -m venv ttslab-env
+
+# Activate virtual environment (Windows)
+ttslab-env\Scripts\activate
+
+# Activate virtual environment (macOS/Linux)
+source ttslab-env/bin/activate
+
+# Install requests
+pip install requests python-dotenv
 ```
 
-To install the official Node.js library, run the following command in your Node.js project directory:
+### Node.js Setup
+
+For Node.js projects, install the required packages:
 
 ```bash
-npm install @elevenlabs/elevenlabs-js
+npm install node-fetch dotenv
+```
+
+## API Base URL
+
+All API requests should be made to:
+
+```
+https://api.ttslab.com
+```
+
+## Authentication
+
+All API requests require authentication using the `X-API-KEY` header:
+
+```bash
+X-API-KEY: your_api_key_here
+```
+
+## Available Endpoints
+
+### Core Endpoints
+- **Text-to-Speech**: `POST /v1/text-to-speech` - Convert text to speech
+- **Models**: `GET /api/models/` - List available models
+- **Voices**: `GET /api/voices/` - List available voices
+- **History**: `GET /api/history/` - Get generation history
+
+### Voice Management
+- **Create Voice**: `POST /api/voices/` - Create a new voice
+- **Get Voice**: `GET /api/voices/{voice_id}` - Get voice details
+- **Update Voice**: `PUT /api/voices/{voice_id}` - Update voice settings
+- **Delete Voice**: `DELETE /api/voices/{voice_id}` - Delete a voice
+
+### User Management
+- **User Profile**: `GET /api/user/` - Get user profile
+- **Usage Stats**: `GET /api/user/usage/` - Get usage statistics
+
+## Rate Limits
+
+- **Free Tier**: 10 requests per minute
+- **Pro Tier**: 100 requests per minute
+- **Enterprise**: Custom limits
+
+## Response Format
+
+All API responses are returned in JSON format with the following structure:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Response data here
+  },
+  "message": "Success message"
+}
+```
+
+## Error Handling
+
+Errors are returned with appropriate HTTP status codes and error messages:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_API_KEY",
+    "message": "Invalid API key provided"
+  }
+}
 ```
 
 <div id="overview-wave">

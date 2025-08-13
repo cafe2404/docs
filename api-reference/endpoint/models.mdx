@@ -1,0 +1,123 @@
+---
+title: Models
+subtitle: List available TTS models
+---
+
+## Get Models
+
+Retrieve a list of all available text-to-speech models.
+
+<RequestExample>
+```bash
+curl -X GET "https://api.ttslab.com/api/models/" \
+  -H "X-API-KEY: your_api_key_here"
+```
+
+```python
+import requests
+
+url = "https://api.ttslab.com/api/models/"
+headers = {
+    "X-API-KEY": "your_api_key_here"
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+```javascript
+const fetch = require('node-fetch');
+
+const url = 'https://api.ttslab.com/api/models/';
+const headers = {
+    'X-API-KEY': 'your_api_key_here'
+};
+
+fetch(url, { headers })
+    .then(response => response.json())
+    .then(data => console.log(data));
+```
+</RequestExample>
+
+### Response
+
+<ResponseExample>
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "eleven_v3",
+      "name": "Eleven Multilingual v3",
+      "description": "Latest multilingual model with improved quality",
+      "version": "3.0",
+      "languages": ["en", "es", "fr", "de", "it", "pt", "pl", "hi", "ja", "ko", "zh"],
+      "features": ["multilingual", "high_quality", "fast"],
+      "max_text_length": 5000,
+      "credits_per_second": 1
+    },
+    {
+      "id": "eleven_flash_v2_5",
+      "name": "Eleven Flash v2.5",
+      "description": "Fast and efficient model for quick generation",
+      "version": "2.5",
+      "languages": ["en"],
+      "features": ["fast", "efficient"],
+      "max_text_length": 2500,
+      "credits_per_second": 0.5
+    },
+    {
+      "id": "eleven_multilingual_v2",
+      "name": "Eleven Multilingual v2",
+      "description": "Multilingual model with good quality and speed",
+      "version": "2.0",
+      "languages": ["en", "es", "fr", "de", "it", "pt"],
+      "features": ["multilingual", "balanced"],
+      "max_text_length": 3000,
+      "credits_per_second": 0.8
+    }
+  ],
+  "message": "Models retrieved successfully"
+}
+```
+</ResponseExample>
+
+### Model Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | string | Unique model identifier |
+| `name` | string | Human-readable model name |
+| `description` | string | Model description |
+| `version` | string | Model version |
+| `languages` | array | Supported language codes |
+| `features` | array | Model features |
+| `max_text_length` | integer | Maximum text length in characters |
+| `credits_per_second` | float | Credits consumed per second of audio |
+
+### Language Codes
+
+| Code | Language |
+|------|----------|
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `de` | German |
+| `it` | Italian |
+| `pt` | Portuguese |
+| `pl` | Polish |
+| `hi` | Hindi |
+| `ja` | Japanese |
+| `ko` | Korean |
+| `zh` | Chinese |
+
+### Features
+
+| Feature | Description |
+|---------|-------------|
+| `multilingual` | Supports multiple languages |
+| `high_quality` | Optimized for quality over speed |
+| `fast` | Optimized for speed over quality |
+| `efficient` | Low resource consumption |
+| `balanced` | Good balance of quality and speed |
+
