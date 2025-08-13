@@ -62,14 +62,19 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
        
        response = requests.post(url, headers=headers, json=data)
        
-       if response.status_code == 200:
-           # Save the audio file
-           with open("output.mp3", "wb") as f:
-               f.write(response.content)
-           print("Audio generated successfully!")
-       else:
-           print(f"Error: {response.status_code}")
-           print(response.text)
+        if response.status_code == 200:
+            result = response.json()
+            print(f"Audio generated successfully! History ID: {result['history_id']}")
+            print(f"Audio URL: {result['audio_url']}")
+            
+            # Download the audio file
+            audio_response = requests.get(result['audio_url'])
+            with open("output.mp3", "wb") as f:
+                f.write(audio_response.content)
+            print("Audio file downloaded as output.mp3")
+        else:
+            print(f"Error: {response.status_code}")
+            print(response.text)
        ```
        
        ```javascript
@@ -112,16 +117,26 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
            headers: headers,
            body: JSON.stringify(data)
        })
-       .then(response => {
-           if (response.ok) {
-               return response.arrayBuffer();
-           }
-           throw new Error(`HTTP error! status: ${response.status}`);
-       })
-       .then(buffer => {
-           fs.writeFileSync('output.mp3', Buffer.from(buffer));
-           console.log('Audio generated successfully!');
-       })
+               .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+        })
+        .then(result => {
+            console.log(`Audio generated successfully! History ID: ${result.history_id}`);
+            console.log(`Audio URL: ${result.audio_url}`);
+            
+            // Download the audio file
+            return fetch(result.audio_url);
+        })
+        .then(audioResponse => {
+            return audioResponse.arrayBuffer();
+        })
+        .then(buffer => {
+            fs.writeFileSync('output.mp3', Buffer.from(buffer));
+            console.log('Audio file downloaded as output.mp3');
+        })
        .catch(error => {
            console.error('Error:', error);
        });
@@ -174,8 +189,9 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
             ```
         </CodeBlocks>
 
-        You should see "Audio generated successfully!" and find an `output.mp3` file in your directory.
+                 You should see "Audio generated successfully!" with the History ID and Audio URL, then find an `output.mp3` file in your directory.
     </Step>
+
 </Steps>
 
 ## Request Format
@@ -191,7 +207,9 @@ X-API-KEY: your_api_key_here
 TTSLab supports different model versions with different request formats:
 
 ### v3 Models
+
 Use the simplified `inputs` format:
+
 ```json
 {
   "inputs": {
@@ -202,7 +220,9 @@ Use the simplified `inputs` format:
 ```
 
 ### v1/v2 Models
+
 Use the traditional format with additional parameters and config:
+
 ```json
 {
   "text": "Your text here",
@@ -219,6 +239,7 @@ Use the traditional format with additional parameters and config:
 ```
 
 **Config Parameters:**
+
 - `stability` (0.0 - 1.0): Controls voice consistency
 - `similarity_boost` (0.0 - 1.0): Controls voice similarity to original
 - `style` (0.0 - 1.0): Controls speaking style
@@ -226,11 +247,58 @@ Use the traditional format with additional parameters and config:
 
 ## Response Handling
 
-The API returns the audio file directly in the response body. Make sure to:
+The API returns a JSON object with the following structure:
 
-1. Check the response status code (200 for success)
-2. Save the response content as a binary file
-3. Handle errors appropriately
+```json
+{
+  "id": "history_id_here",
+  "user": {
+    "fullname": "User Full Name",
+    "avatar": "https://api.ttslab.com/media/avatars/user.jpg"
+  },
+  "history_id": "unique_history_id",
+  "prompt": "The first move is what sets everything in motion.",
+  "model": "ttslab_multilingual_v3",
+  "voice": "voice_name_here",
+  "config": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "credits_used": 1,
+  "status": "completed",
+  "shared_url": "https://ttslab.com/share/audio_id",
+  "created_at": "2024-01-01T12:00:00Z",
+  "audio_url": "https://api.ttslab.com/media/audio/output.mp3"
+}
+```
+
+### Response Fields:
+
+- **`id`**: Unique identifier for the history record
+- **`user`**: User information (fullname, avatar)
+- **`history_id`**: History tracking ID
+- **`prompt`**: The text that was converted to speech
+- **`model`**: Model used for generation
+- **`voice`**: Voice used for generation
+- **`config`**: Configuration parameters used
+- **`credits_used`**: Number of credits consumed
+- **`status`**: Status of the generation (completed, processing, failed)
+- **`shared_url`**: Public shareable URL for the audio
+- **`created_at`**: Timestamp of creation
+- **`audio_url`**: Direct URL to download the generated audio file
+
+### Downloading the Audio:
+
+To get the actual audio file, make a GET request to the `audio_url`:
+
+```python
+# Download the audio file
+audio_response = requests.get(response.json()["audio_url"])
+with open("output.mp3", "wb") as f:
+    f.write(audio_response.content)
+```
 
 ## Next Steps
 
