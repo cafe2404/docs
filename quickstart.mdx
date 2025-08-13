@@ -1,5 +1,5 @@
 ---
-title: Developer quickstart
+title: Quickstart
 subtitle: Learn how to make your first TTSLab API request.
 ---
 
@@ -46,13 +46,19 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
            }
        }
        
-       # For other models (v1, v2)
-       # data = {
-       #     "text": "The first move is what sets everything in motion.",
-       #     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
-       #     "model_id": "ttslab_multilingual_v2",
-       #     "output_format": "mp3_44100_128"
-       # }
+               # For other models (v1, v2)
+        # data = {
+        #     "text": "The first move is what sets everything in motion.",
+        #     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+        #     "model_id": "ttslab_multilingual_v2",
+        #     "output_format": "mp3_44100_128",
+        #     "config": {
+        #         "stability": 0.5,
+        #         "similarity_boost": 0.75,
+        #         "style": 0.0,
+        #         "use_speaker_boost": True
+        #     }
+        # }
        
        response = requests.post(url, headers=headers, json=data)
        
@@ -87,13 +93,19 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
            }
        };
        
-       // For other models (v1, v2)
-       // const data = {
-       //     text: 'The first move is what sets everything in motion.',
-       //     voice_id: 'JBFqnCBsd6RMkjVDRZzb',
-       //     model_id: 'ttslab_multilingual_v2',
-       //     output_format: 'mp3_44100_128'
-       // };
+               // For other models (v1, v2)
+        // const data = {
+        //     text: 'The first move is what sets everything in motion.',
+        //     voice_id: 'JBFqnCBsd6RMkjVDRZzb',
+        //     model_id: 'ttslab_multilingual_v2',
+        //     output_format: 'mp3_44100_128',
+        //     config: {
+        //         stability: 0.5,
+        //         similarity_boost: 0.75,
+        //         style: 0.0,
+        //         use_speaker_boost: true
+        //     }
+        // };
        
        fetch(url, {
            method: 'POST',
