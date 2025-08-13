@@ -17,8 +17,8 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "models",
-              "development"
+              "quickstart",
+              "models"
             ]
           }
         ]
