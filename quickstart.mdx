@@ -1,152 +1,209 @@
 ---
 title: Developer quickstart
-subtitle: Learn how to make your first ElevenLabs API request.
+subtitle: Learn how to make your first TTSLab API request.
 ---
 
-The ElevenLabs API provides a simple interface to state-of-the-art audio [models](/docs/models) and [features](/docs/api-reference/introduction). Follow this guide to learn how to create lifelike speech with our Text to Speech API. See the [developer guides](/docs/quickstart#explore-our-developer-guides) for more examples with our other products.
+The TTSLab API provides a simple interface to state-of-the-art audio [models](/docs/models) and [features](/docs/api-reference/introduction). Follow this guide to learn how to create lifelike speech with our Text to Speech API using direct HTTP requests.
 
 ## Using the Text to Speech API
 
 <Steps>
     <Step title="Create an API key">
-      [Create an API key in the dashboard here](https://elevenlabs.io/app/settings/api-keys), which you’ll use to securely [access the API](/docs/api-reference/authentication).
+      [Create an API key in the dashboard here](https://ttslab.com/app/settings/api-keys), which you'll use to securely [access the API](/docs/api-reference/authentication).
       
-      Store the key as a managed secret and pass it to the SDKs either as a environment variable via an `.env` file, or directly in your app’s configuration depending on your preference.
+      Store the key as a managed secret and pass it in the `X-API-KEY` header with your requests.
       
-      ```js title=".env"
-      ELEVENLABS_API_KEY=<your_api_key_here>
+      ```bash title=".env"
+      TTSLAB_API_KEY=<your_api_key_here>
       ```
       
     </Step>
-    <Step title="Install the SDK">
-      We'll also use the `dotenv` library to load our API key from an environment variable.
+    <Step title="Make your first request">
+      Create a new file named `example.py` or `example.js`, depending on your language of choice and add the following code:
       
       <CodeBlocks>
-          ```python
-          pip install elevenlabs
-          pip install python-dotenv
-          ```
-      
-          ```typescript
-          npm install @elevenlabs/elevenlabs-js
-          npm install dotenv
-          ```
-      
-      </CodeBlocks>
-      
-
-      <Note>
-        To play the audio through your speakers, you may be prompted to install [MPV](https://mpv.io/)
-      and/or [ffmpeg](https://ffmpeg.org/).
-      </Note>
-    </Step>
-    <Step title="Make your first request">
-      Create a new file named `example.py` or `example.mts`, depending on your language of choice and add the following code:
-       {/* This snippet was auto-generated */}
-       <CodeBlocks>
        ```python
-       from dotenv import load_dotenv
-       from elevenlabs.client import ElevenLabs
-       from elevenlabs import play
+       import requests
        import os
+       from dotenv import load_dotenv
        
        load_dotenv()
        
-       elevenlabs = ElevenLabs(
-         api_key=os.getenv("ELEVENLABS_API_KEY"),
-       )
+       api_key = os.getenv("TTSLAB_API_KEY")
        
-       audio = elevenlabs.text_to_speech.convert(
-           text="The first move is what sets everything in motion.",
-           voice_id="JBFqnCBsd6RMkjVDRZzb",
-           model_id="eleven_multilingual_v2",
-           output_format="mp3_44100_128",
-       )
+       url = "https://api.ttslab.com/v1/text-to-speech"
        
-       play(audio)
+       headers = {
+           "X-API-KEY": api_key,
+           "Content-Type": "application/json"
+       }
        
+       # For v3 models
+       data = {
+           "inputs": {
+               "text": "The first move is what sets everything in motion.",
+               "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+           }
+       }
+       
+       # For other models (v1, v2)
+       # data = {
+       #     "text": "The first move is what sets everything in motion.",
+       #     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+       #     "model_id": "ttslab_multilingual_v2",
+       #     "output_format": "mp3_44100_128"
+       # }
+       
+       response = requests.post(url, headers=headers, json=data)
+       
+       if response.status_code == 200:
+           # Save the audio file
+           with open("output.mp3", "wb") as f:
+               f.write(response.content)
+           print("Audio generated successfully!")
+       else:
+           print(f"Error: {response.status_code}")
+           print(response.text)
        ```
        
-       ```typescript
-       import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
-       import 'dotenv/config';
+       ```javascript
+       const fs = require('fs');
+       require('dotenv').config();
        
-       const elevenlabs = new ElevenLabsClient();
-       const audio = await elevenlabs.textToSpeech.convert('JBFqnCBsd6RMkjVDRZzb', {
-         text: 'The first move is what sets everything in motion.',
-         modelId: 'eleven_multilingual_v2',
-         outputFormat: 'mp3_44100_128',
+       const apiKey = process.env.TTSLAB_API_KEY;
+       
+       const url = 'https://api.ttslab.com/v1/text-to-speech';
+       
+       const headers = {
+           'X-API-KEY': apiKey,
+           'Content-Type': 'application/json'
+       };
+       
+       // For v3 models
+       const data = {
+           inputs: {
+               text: 'The first move is what sets everything in motion.',
+               voice_id: 'JBFqnCBsd6RMkjVDRZzb'
+           }
+       };
+       
+       // For other models (v1, v2)
+       // const data = {
+       //     text: 'The first move is what sets everything in motion.',
+       //     voice_id: 'JBFqnCBsd6RMkjVDRZzb',
+       //     model_id: 'ttslab_multilingual_v2',
+       //     output_format: 'mp3_44100_128'
+       // };
+       
+       fetch(url, {
+           method: 'POST',
+           headers: headers,
+           body: JSON.stringify(data)
+       })
+       .then(response => {
+           if (response.ok) {
+               return response.arrayBuffer();
+           }
+           throw new Error(`HTTP error! status: ${response.status}`);
+       })
+       .then(buffer => {
+           fs.writeFileSync('output.mp3', Buffer.from(buffer));
+           console.log('Audio generated successfully!');
+       })
+       .catch(error => {
+           console.error('Error:', error);
        });
+       ```
        
-       await play(audio);
-       
+       ```bash
+       curl -X POST "https://api.ttslab.com/v1/text-to-speech" \
+         -H "X-API-KEY: $TTSLAB_API_KEY" \
+         -H "Content-Type: application/json" \
+         # For v3 models
+         -d '{
+           "inputs": {
+             "text": "The first move is what sets everything in motion.",
+             "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+           }
+         }' \
+         
+         # For other models (v1, v2)
+         # -d '{
+         #   "text": "The first move is what sets everything in motion.",
+         #   "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+         #   "model_id": "ttslab_multilingual_v2",
+         #   "output_format": "mp3_44100_128"
+         # }' \
+         --output output.mp3
        ```
        
        </CodeBlocks>
     </Step>
     <Step title="Run the code">
         <CodeBlocks>
-            ```python
+            ```bash
             python example.py
             ```
 
-            ```typescript
-            npx tsx example.mts
+            ```bash
+            node example.js
+            ```
+
+            ```bash
+            # For curl, make sure TTSLAB_API_KEY is set in your environment
+            export TTSLAB_API_KEY="your_api_key_here"
+            # Then run the curl command above
             ```
         </CodeBlocks>
 
-        You should hear the audio play through your speakers.
+        You should see "Audio generated successfully!" and find an `output.mp3` file in your directory.
     </Step>
-
 </Steps>
 
-## Explore our developer guides
+## Request Format
 
-Now that you've made your first ElevenLabs API request, you can explore the other products that ElevenLabs offers.
+All API requests to TTSLab should include the `X-API-KEY` header with your API key:
 
-<CardGroup cols={2}>
-  <Card
-    title="Speech to Text"
-    icon="duotone pen-clip"
-    href="/docs/cookbooks/speech-to-text/quickstart"
-  >
-    Convert spoken audio into text
-  </Card>
-  <Card
-    title="Conversational AI"
-    icon="duotone comments"
-    href="/docs/cookbooks/conversational-ai/quickstart"
-  >
-    Deploy conversational voice agents
-  </Card>
-  <Card
-    title="Voice cloning"
-    icon="duotone clone"
-    href="/docs/cookbooks/voices/instant-voice-cloning"
-  >
-    Clone a voice
-  </Card>
-  <Card title="Sound effects" icon="duotone explosion" href="/docs/cookbooks/sound-effects">
-    Generate sound effects from text
-  </Card>
-  <Card title="Voice Changer" icon="duotone message-pen" href="/docs/cookbooks/voice-changer">
-    Transform the voice of an audio file
-  </Card>
-  <Card title="Voice Isolator" icon="duotone ear" href="/docs/cookbooks/voice-isolator">
-    Isolate background noise from audio
-  </Card>
-  <Card title="Voice Design" icon="duotone paint-brush" href="/docs/cookbooks/voices/voice-design">
-    Generate voices from a single text prompt
-  </Card>
-  <Card title="Dubbing" icon="duotone language" href="/docs/cookbooks/dubbing">
-    Dub audio/video from one language to another
-  </Card>
-  <Card
-    title="Forced Alignment"
-    icon="duotone objects-align-left"
-    href="/docs/cookbooks/forced-alignment"
-  >
-    Generate time-aligned transcripts for audio
-  </Card>
-</CardGroup>
+```bash
+X-API-KEY: your_api_key_here
+```
 
+## Model Versions
+
+TTSLab supports different model versions with different request formats:
+
+### v3 Models
+Use the simplified `inputs` format:
+```json
+{
+  "inputs": {
+    "text": "Your text here",
+    "voice_id": "voice_id_here"
+  }
+}
+```
+
+### v1/v2 Models
+Use the traditional format with additional parameters:
+```json
+{
+  "text": "Your text here",
+  "voice_id": "voice_id_here",
+  "model_id": "ttslab_multilingual_v2",
+  "output_format": "mp3_44100_128"
+}
+```
+
+## Response Handling
+
+The API returns the audio file directly in the response body. Make sure to:
+
+1. Check the response status code (200 for success)
+2. Save the response content as a binary file
+3. Handle errors appropriately
+
+## Next Steps
+
+- Explore our [API reference](/docs/api-reference/introduction) for all available endpoints
+- Learn about different [models](/docs/models) and their capabilities
+- Check out [voice management](/docs/api-reference/endpoint/get) for working with voices
