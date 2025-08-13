@@ -202,15 +202,27 @@ Use the simplified `inputs` format:
 ```
 
 ### v1/v2 Models
-Use the traditional format with additional parameters:
+Use the traditional format with additional parameters and config:
 ```json
 {
   "text": "Your text here",
   "voice_id": "voice_id_here",
   "model_id": "ttslab_multilingual_v2",
-  "output_format": "mp3_44100_128"
+  "output_format": "mp3_44100_128",
+  "config": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }
 ```
+
+**Config Parameters:**
+- `stability` (0.0 - 1.0): Controls voice consistency
+- `similarity_boost` (0.0 - 1.0): Controls voice similarity to original
+- `style` (0.0 - 1.0): Controls speaking style
+- `use_speaker_boost` (boolean): Enhances speaker clarity
 
 ## Response Handling
 
