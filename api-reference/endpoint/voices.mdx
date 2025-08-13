@@ -44,36 +44,135 @@ fetch(url, { headers })
 <ResponseExample>
 ```json
 {
-  "success": true,
-  "data": [
+  "voices": [
     {
-      "id": "JBFqnCBsd6RMkjVDRZzb",
+      "voice_id": "JBFqnCBsd6RMkjVDRZzb",
       "name": "Rachel",
+      "samples": [
+        {
+          "sample_id": "sample_123",
+          "file_name": "rachel_sample.mp3",
+          "mime_type": "audio/mpeg",
+          "size_bytes": 52428,
+          "hash": "abc123def456",
+          "duration_secs": 3.5,
+          "remove_background_noise": true,
+          "has_isolated_audio": true,
+          "has_isolated_audio_preview": true,
+          "speaker_separation": {
+            "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+            "sample_id": "sample_123",
+            "status": "completed",
+            "speakers": {},
+            "selected_speaker_ids": ["speaker_1"]
+          },
+          "trim_start": 0,
+          "trim_end": 3.5
+        }
+      ],
+      "category": "generated",
+      "fine_tuning": {
+        "is_allowed_to_fine_tune": false,
+        "state": {},
+        "verification_failures": [],
+        "verification_attempts_count": 0,
+        "manual_verification_requested": false,
+        "language": "en",
+        "progress": {},
+        "message": {},
+        "dataset_duration_seconds": 0,
+        "verification_attempts": [],
+        "slice_ids": [],
+        "manual_verification": {},
+        "max_verification_attempts": 3,
+        "next_max_verification_attempts_reset_unix_ms": 0,
+        "finetuning_state": null
+      },
+      "labels": {},
       "description": "Professional female voice",
-      "category": "professional",
-      "language": "en",
-      "gender": "female",
-      "age": "adult",
-      "accent": "american",
-      "sample_url": "https://api.ttslab.com/media/samples/rachel.mp3",
-      "created_at": "2024-01-01T12:00:00Z",
-      "is_public": true
-    },
-    {
-      "id": "EXAVITQu4vr4xnSDxMaL",
-      "name": "Bella",
-      "description": "Friendly female voice",
-      "category": "casual",
-      "language": "en",
-      "gender": "female",
-      "age": "young",
-      "accent": "british",
-      "sample_url": "https://api.ttslab.com/media/samples/bella.mp3",
-      "created_at": "2024-01-01T12:00:00Z",
-      "is_public": true
+      "preview_url": "https://api.ttslab.com/media/samples/rachel.mp3",
+      "available_for_tiers": ["free", "pro"],
+      "settings": {
+        "stability": 0.5,
+        "use_speaker_boost": true,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "speed": 1.0
+      },
+      "sharing": {
+        "status": "enabled",
+        "history_item_sample_id": "history_123",
+        "date_unix": 1704067200,
+        "whitelisted_emails": [],
+        "public_owner_id": "owner_123",
+        "original_voice_id": "JBFqnCBsd6RMkjVDRZzb",
+        "financial_rewards_enabled": false,
+        "free_users_allowed": true,
+        "live_moderation_enabled": true,
+        "rate": 0,
+        "fiat_rate": 0,
+        "notice_period": 0,
+        "disable_at_unix": 0,
+        "voice_mixing_allowed": true,
+        "featured": false,
+        "category": "generated",
+        "reader_app_enabled": true,
+        "image_url": "https://api.ttslab.com/media/avatars/rachel.jpg",
+        "ban_reason": null,
+        "liked_by_count": 0,
+        "cloned_by_count": 0,
+        "name": "Rachel",
+        "description": "Professional female voice",
+        "labels": {},
+        "review_status": "not_requested",
+        "review_message": null,
+        "enabled_in_library": true,
+        "instagram_username": null,
+        "twitter_username": null,
+        "youtube_username": null,
+        "tiktok_username": null,
+        "moderation_check": {
+          "date_checked_unix": 1704067200,
+          "name_value": "Rachel",
+          "name_check": true,
+          "description_value": "Professional female voice",
+          "description_check": true,
+          "sample_ids": ["sample_123"],
+          "sample_checks": [1],
+          "captcha_ids": [],
+          "captcha_checks": []
+        },
+        "reader_restricted_on": []
+      },
+      "high_quality_base_model_ids": ["eleven_v3"],
+      "verified_languages": [
+        {
+          "language": "en",
+          "model_id": "eleven_v3",
+          "accent": "american",
+          "locale": "en-US",
+          "preview_url": "https://api.ttslab.com/media/samples/rachel_en.mp3"
+        }
+      ],
+      "safety_control": "NONE",
+      "voice_verification": {
+        "requires_verification": false,
+        "is_verified": true,
+        "verification_failures": [],
+        "verification_attempts_count": 0,
+        "language": "en",
+        "verification_attempts": []
+      },
+      "permission_on_resource": "full",
+      "is_owner": false,
+      "is_legacy": false,
+      "is_mixed": false,
+      "created_at_unix": 1704067200
     }
   ],
-  "message": "Voices retrieved successfully"
+  "has_more": false,
+  "total_count": 1,
+  "next_page_token": null
 }
 ```
 </ResponseExample>
@@ -107,192 +206,163 @@ print(response.json())
 <ResponseExample>
 ```json
 {
-  "success": true,
-  "data": {
-    "id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "name": "Rachel",
+  "samples": [
+    {
+      "sample_id": "sample_123",
+      "file_name": "rachel_sample.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 52428,
+      "hash": "abc123def456",
+      "duration_secs": 3.5,
+      "remove_background_noise": true,
+      "has_isolated_audio": true,
+      "has_isolated_audio_preview": true,
+      "speaker_separation": {
+        "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+        "sample_id": "sample_123",
+        "status": "completed",
+        "speakers": {},
+        "selected_speaker_ids": ["speaker_1"]
+      },
+      "trim_start": 0,
+      "trim_end": 3.5
+    }
+  ],
+  "category": "generated",
+  "fine_tuning": {
+    "is_allowed_to_fine_tune": false,
+    "state": {},
+    "verification_failures": [],
+    "verification_attempts_count": 0,
+    "manual_verification_requested": false,
+    "language": "en",
+    "progress": {},
+    "message": {},
+    "dataset_duration_seconds": 0,
+    "verification_attempts": [],
+    "slice_ids": [],
+    "manual_verification": {},
+    "max_verification_attempts": 3,
+    "next_max_verification_attempts_reset_unix_ms": 0,
+    "finetuning_state": null
+  },
+  "labels": {},
+  "description": "Professional female voice",
+  "preview_url": "https://api.ttslab.com/media/samples/rachel.mp3",
+  "available_for_tiers": ["free", "pro"],
+  "settings": {
+    "stability": 0.5,
+    "use_speaker_boost": true,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "speed": 1.0
+  },
+  "sharing": {
+    "status": "enabled",
+    "history_item_sample_id": "history_123",
+    "date_unix": 1704067200,
+    "whitelisted_emails": [],
+    "public_owner_id": "owner_123",
+    "original_voice_id": "JBFqnCBsd6RMkjVDRZzb",
+    "financial_rewards_enabled": false,
+    "free_users_allowed": true,
+    "live_moderation_enabled": true,
+    "rate": 0,
+    "fiat_rate": 0,
+    "notice_period": 0,
+    "disable_at_unix": 0,
+    "voice_mixing_allowed": true,
+    "featured": false,
+    "category": "generated",
+    "reader_app_enabled": true,
+    "image_url": "https://api.ttslab.com/media/avatars/rachel.jpg",
+    "ban_reason": null,
+    "liked_by_count": 0,
+    "cloned_by_count": 0,
     "name": "Rachel",
     "description": "Professional female voice",
-    "category": "professional",
+    "labels": {},
+    "review_status": "not_requested",
+    "review_message": null,
+    "enabled_in_library": true,
+    "instagram_username": null,
+    "twitter_username": null,
+    "youtube_username": null,
+    "tiktok_username": null,
+    "moderation_check": {
+      "date_checked_unix": 1704067200,
+      "name_value": "Rachel",
+      "name_check": true,
+      "description_value": "Professional female voice",
+      "description_check": true,
+      "sample_ids": ["sample_123"],
+      "sample_checks": [1],
+      "captcha_ids": [],
+      "captcha_checks": []
+    },
+    "reader_restricted_on": []
+  },
+  "high_quality_base_model_ids": ["eleven_v3"],
+  "verified_languages": [
+    {
+      "language": "en",
+      "model_id": "eleven_v3",
+      "accent": "american",
+      "locale": "en-US",
+      "preview_url": "https://api.ttslab.com/media/samples/rachel_en.mp3"
+    }
+  ],
+  "safety_control": "NONE",
+  "voice_verification": {
+    "requires_verification": false,
+    "is_verified": true,
+    "verification_failures": [],
+    "verification_attempts_count": 0,
     "language": "en",
-    "gender": "female",
-    "age": "adult",
-    "accent": "american",
-    "sample_url": "https://api.ttslab.com/media/samples/rachel.mp3",
-    "created_at": "2024-01-01T12:00:00Z",
-    "is_public": true,
-    "settings": {
-      "stability": 0.5,
-      "similarity_boost": 0.75,
-      "style": 0.0,
-      "use_speaker_boost": true
-    }
+    "verification_attempts": []
   },
-  "message": "Voice retrieved successfully"
+  "permission_on_resource": "full",
+  "is_owner": false,
+  "is_legacy": false,
+  "is_mixed": false,
+  "created_at_unix": 1704067200
 }
 ```
 </ResponseExample>
-
-## Create Voice
-
-Create a new custom voice from audio samples.
-
-<RequestExample>
-```bash
-curl -X POST "https://api.ttslab.com/api/voices/" \
-  -H "X-API-KEY: your_api_key_here" \
-  -H "Content-Type: multipart/form-data" \
-  -F "name=My Custom Voice" \
-  -F "description=A custom voice for my project" \
-  -F "files=@sample1.mp3" \
-  -F "files=@sample2.mp3"
-```
-
-```python
-import requests
-
-url = "https://api.ttslab.com/api/voices/"
-headers = {
-    "X-API-KEY": "your_api_key_here"
-}
-
-data = {
-    "name": "My Custom Voice",
-    "description": "A custom voice for my project"
-}
-
-files = [
-    ("files", ("sample1.mp3", open("sample1.mp3", "rb"), "audio/mpeg")),
-    ("files", ("sample2.mp3", open("sample2.mp3", "rb"), "audio/mpeg"))
-]
-
-response = requests.post(url, headers=headers, data=data, files=files)
-print(response.json())
-```
-</RequestExample>
-
-### Request Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `name` | string | Yes | Voice name |
-| `description` | string | No | Voice description |
-| `files` | file[] | Yes | Audio sample files (MP3, WAV, M4A) |
-
-### Response
-
-<ResponseExample>
-```json
-{
-  "success": true,
-  "data": {
-    "id": "custom_voice_id_123",
-    "name": "My Custom Voice",
-    "description": "A custom voice for my project",
-    "category": "custom",
-    "language": "auto",
-    "gender": "auto",
-    "age": "auto",
-    "accent": "auto",
-    "sample_url": null,
-    "created_at": "2024-01-01T12:00:00Z",
-    "is_public": false,
-    "status": "processing"
-  },
-  "message": "Voice created successfully"
-}
-```
-</ResponseExample>
-
-## Update Voice
-
-Update voice settings and metadata.
-
-<RequestExample>
-```bash
-curl -X PUT "https://api.ttslab.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
-  -H "X-API-KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Updated Voice Name",
-    "description": "Updated description",
-    "settings": {
-      "stability": 0.7,
-      "similarity_boost": 0.8
-    }
-  }'
-```
-
-```python
-import requests
-
-voice_id = "JBFqnCBsd6RMkjVDRZzb"
-url = f"https://api.ttslab.com/api/voices/{voice_id}"
-headers = {
-    "X-API-KEY": "your_api_key_here",
-    "Content-Type": "application/json"
-}
-
-data = {
-    "name": "Updated Voice Name",
-    "description": "Updated description",
-    "settings": {
-        "stability": 0.7,
-        "similarity_boost": 0.8
-    }
-}
-
-response = requests.put(url, headers=headers, json=data)
-print(response.json())
-```
-</RequestExample>
-
-## Delete Voice
-
-Delete a custom voice.
-
-<RequestExample>
-```bash
-curl -X DELETE "https://api.ttslab.com/api/voices/custom_voice_id_123" \
-  -H "X-API-KEY: your_api_key_here"
-```
-
-```python
-import requests
-
-voice_id = "custom_voice_id_123"
-url = f"https://api.ttslab.com/api/voices/{voice_id}"
-headers = {
-    "X-API-KEY": "your_api_key_here"
-}
-
-response = requests.delete(url, headers=headers)
-print(response.json())
-```
-</RequestExample>
 
 ### Voice Properties
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `id` | string | Unique voice identifier |
+| `voice_id` | string | Unique voice identifier |
 | `name` | string | Voice name |
+| `samples` | array | Voice sample files |
+| `category` | string | Voice category (generated, cloned, etc.) |
+| `fine_tuning` | object | Fine-tuning configuration |
+| `labels` | object | Voice labels and metadata |
 | `description` | string | Voice description |
-| `category` | string | Voice category (professional, casual, custom) |
-| `language` | string | Primary language code |
-| `gender` | string | Voice gender (male, female, auto) |
-| `age` | string | Voice age group (young, adult, senior, auto) |
-| `accent` | string | Voice accent (american, british, australian, etc.) |
-| `sample_url` | string | URL to voice sample audio |
-| `created_at` | string | Creation timestamp |
-| `is_public` | boolean | Whether voice is publicly available |
-| `status` | string | Voice status (active, processing, failed) |
+| `preview_url` | string | URL to voice preview |
+| `available_for_tiers` | array | Available subscription tiers |
 | `settings` | object | Voice generation settings |
+| `sharing` | object | Sharing and public settings |
+| `high_quality_base_model_ids` | array | Supported high-quality models |
+| `verified_languages` | array | Verified language support |
+| `safety_control` | string | Safety control level |
+| `voice_verification` | object | Voice verification status |
+| `permission_on_resource` | string | User permissions |
+| `is_owner` | boolean | Whether user owns the voice |
+| `is_legacy` | boolean | Whether voice is legacy |
+| `is_mixed` | boolean | Whether voice is mixed |
+| `created_at_unix` | integer | Creation timestamp |
 
 ### Voice Settings
 
 | Setting | Type | Range | Description |
 |---------|------|-------|-------------|
 | `stability` | float | 0.0 - 1.0 | Controls voice consistency |
+| `use_speaker_boost` | boolean | - | Enhances speaker clarity |
 | `similarity_boost` | float | 0.0 - 1.0 | Controls voice similarity to original |
 | `style` | float | 0.0 - 1.0 | Controls speaking style |
-| `use_speaker_boost` | boolean | - | Enhances speaker clarity |
+| `speed` | float | 0.25 - 4.0 | Controls speaking speed |

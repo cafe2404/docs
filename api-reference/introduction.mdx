@@ -39,7 +39,7 @@ npm install node-fetch dotenv
 All API requests should be made to:
 
 ```
-https://api.ttslab.com
+https://api.elevenlabs8.com
 ```
 
 ## Authentication
@@ -52,7 +52,7 @@ X-API-KEY: your_api_key_here
 
 ## Available Endpoints
 
-### Core Endpoints
+### Endpoints
 - **Text-to-Speech**: `POST /v1/text-to-speech` - Convert text to speech
 - **Models**: `GET /api/models/` - List available models
 - **Voices**: `GET /api/voices/` - List available voices
@@ -61,18 +61,9 @@ X-API-KEY: your_api_key_here
 ### Voice Management
 - **Create Voice**: `POST /api/voices/` - Create a new voice
 - **Get Voice**: `GET /api/voices/{voice_id}` - Get voice details
-- **Update Voice**: `PUT /api/voices/{voice_id}` - Update voice settings
-- **Delete Voice**: `DELETE /api/voices/{voice_id}` - Delete a voice
 
 ### User Management
-- **User Profile**: `GET /api/user/` - Get user profile
-- **Usage Stats**: `GET /api/user/usage/` - Get usage statistics
-
-## Rate Limits
-
-- **Free Tier**: 10 requests per minute
-- **Pro Tier**: 100 requests per minute
-- **Enterprise**: Custom limits
+- **User Profile**: `GET /api/me/` - Get user profile
 
 ## Response Format
 
@@ -101,7 +92,3 @@ Errors are returned with appropriate HTTP status codes and error messages:
   }
 }
 ```
-
-<div id="overview-wave">
-  <ElevenLabsWaveform color="gray" className="h-[500px]" />
-</div>
