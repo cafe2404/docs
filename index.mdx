@@ -1,97 +1,226 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: ElevenLabs
+headline: ElevenLabs docs
+subtitle: ElevenLabs is an AI audio research and deployment company.
+hide-nav-links: true
 ---
 
-## Setting up
+{/* Light mode wave */}
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
+<div
+  id="overview-wave"
+  className="light-mode-wave"
 >
-  Follow our three step quickstart guide.
+  <ElevenLabsWaveform
+    color="blue"
+    className="h-[500px]"
+  />
+</div>
+
+{/* Dark mode wave */}
+
+<div
+  id="overview-wave"
+  className="dark-mode-wave"
+>
+  <ElevenLabsWaveform
+    color="gray"
+    className="h-[500px]"
+  />
+</div>
+
+## Most popular
+
+<CardGroup>
+  <Card
+    title="Developer quickstart"
+    href="/docs/quickstart"
+  >
+    Learn how to integrate ElevenLabs
+  </Card>
+  <Card
+    title="Conversational AI"
+    href="/docs/conversational-ai/overview"
+  >
+    Deploy voice agents in minutes
+  </Card>
+  <Card
+    title="Product guides"
+    href="/docs/product-guides/overview"
+  >
+    Learn how to use ElevenLabs
+  </Card>
+  <Card
+    title="API reference"
+    href="/docs/api-reference/introduction"
+  >
+    Dive into our API reference
+  </Card>
+</CardGroup>
+
+## Meet the models
+
+<CardGroup cols={2} rows={2}>
+  <Card title={<div className="flex items-start gap-2"><div>Eleven v3</div><div><img src="file:176212f7-5ef0-498d-92b4-bc69b87d1753" alt="Alpha" /></div></div>} href="/docs/models#eleven-v3-alpha">
+    Our most emotionally rich, expressive speech synthesis model
+    <div className="mt-4 space-y-2">
+      <div className="text-sm">Dramatic delivery and performance</div>
+      <div className="text-sm">70+ languages supported</div>
+      <div className="text-sm">10,000 character limit</div>
+      <div className="text-sm">Support for natural multi-speaker dialogue</div>
+    </div>
+  </Card>
+  <Card title="Eleven Multilingual v2" href="/docs/models#multilingual-v2">
+    Lifelike, consistent quality speech synthesis model
+    <div className="mt-4 space-y-2">
+      <div className="text-sm">Natural-sounding output</div>
+      <div className="text-sm">29 languages supported</div>
+      <div className="text-sm">10,000 character limit</div>
+      <div className="text-sm">Most stable on long-form generations</div>
+    </div>
+  </Card>
+  <Card title="Eleven Flash v2.5" href="/docs/models#flash-v25">
+    Our fast, affordable speech synthesis model
+    <div className="mt-4 space-y-2">
+      <div className="text-sm">Ultra-low latency (~75ms&dagger;)</div>
+      <div className="text-sm">32 languages supported</div>
+      <div className="text-sm">40,000 character limit</div>
+      <div className="text-sm">Faster model, 50% lower price per character</div>
+    </div>
+  </Card>
+  <Card title="Eleven Turbo v2.5" href="/docs/models#turbo-v25">
+    High quality, low-latency model with a good balance of quality and speed
+    <div className="mt-4 space-y-2">
+      <div className="text-sm">High quality voice generation</div>
+      <div className="text-sm">32 languages supported</div>
+      <div className="text-sm">40,000 character limit</div>
+      <div className="text-sm">Low latency (~250ms-300ms&dagger;), 50% lower price per character</div>
+
+    </div>
+
+  </Card>
+</CardGroup>
+
+<CardGroup
+  cols={1}
+  rows={1}
+>
+  <Card
+    title="Scribe v1"
+    href="/docs/models#scribe-v1"
+  >
+    State-of-the-art speech recognition model
+    <div className="mt-4 space-y-2">
+      <div className="text-sm">Accurate transcription in 99 languages</div>
+      <div className="text-sm">Precise word-level timestamps</div>
+      <div className="text-sm">Speaker diarization</div>
+      <div className="text-sm">Dynamic audio tagging</div>
+    </div>
+  </Card>
+</CardGroup>
+
+<div className="text-center">
+  <div>[Explore all](/docs/models)</div>
+</div>
+
+## Capabilities
+
+<CardGroup cols={2}>
+
+<Card href="/docs/capabilities/text-to-speech">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Text to Speech</div>
+      <p>Convert text into lifelike speech</p>
+    </div>
+  </div>
 </Card>
 
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
+<Card href="/docs/capabilities/speech-to-text">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Speech to Text</div>
+      <p>Transcribe spoken audio into text</p>
+    </div>
+  </div>
 </Card>
+
+<Card href="/docs/capabilities/voice-changer">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Voice changer</div>
+      <p>Modify and transform voices</p>
+    </div>
+  </div>
+</Card>
+
+<Card href="/docs/capabilities/voice-isolator">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Voice isolator</div>
+      <p>Isolate voices from background noise</p>
+    </div>
+  </div>
+</Card>
+
+<Card href="/docs/capabilities/dubbing">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Dubbing</div>
+      <p>Dub audio and videos seamlessly</p>
+    </div>
+  </div>
+</Card>
+
+<Card href="/docs/capabilities/sound-effects">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Sound effects</div>
+      <p>Create cinematic sound effects</p>
+    </div>
+  </div>
+</Card>
+
+<Card href="/docs/capabilities/voices">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Voices</div>
+      <p>Clone and design custom voices</p>
+    </div>
+  </div>
+</Card>
+
+<Card href="/docs/conversational-ai/overview">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Conversational AI</div>
+      <p>Deploy intelligent voice agents</p>
+    </div>
+  </div>
+</Card>
+
+</CardGroup>
+
+## Product guides
+
+<CardGroup cols={1}>
+
+<Card href="/docs/product-guides/overview">
+  <div className="flex items-center justify-between">
+    <div className="text-left">
+      <div className="t-default text-base font-semibold">Product guides</div>
+      <p>Explore our product guides for step-by-step guidance</p>
+    </div>
+    <div className="flex items-center justify-center">
+      <img
+        src="file:2bdb4805-f47e-430d-9e35-0d0eebc40b2d"
+        alt="Voice library"
+        style={{ pointerEvents: "none", width: "200px" }}
+      />
+    </div>
+  </div>
+</Card>
+
+</CardGroup>
+
+<small>† Excluding application & network latency</small>
