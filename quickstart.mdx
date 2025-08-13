@@ -38,19 +38,20 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
            "Content-Type": "application/json"
        }
        
-       # For v3 models
-       data = {
-           "inputs": {
-               "text": "The first move is what sets everything in motion.",
-               "voice_id": "JBFqnCBsd6RMkjVDRZzb"
-           }
-       }
+               # For v3 models
+        data = {
+            "inputs": {
+                "text": "The first move is what sets everything in motion.",
+                "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+            },
+            "model_id": "eleven_v3"
+        }
        
                # For other models (v1, v2)
         # data = {
         #     "text": "The first move is what sets everything in motion.",
         #     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
-        #     "model_id": "ttslab_multilingual_v2",
+        #     "model_id": "eleven_flash_v2_5",
         #     "output_format": "mp3_44100_128",
         #     "config": {
         #         "stability": 0.5,
@@ -90,19 +91,20 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
            'Content-Type': 'application/json'
        };
        
-       // For v3 models
-       const data = {
-           inputs: {
-               text: 'The first move is what sets everything in motion.',
-               voice_id: 'JBFqnCBsd6RMkjVDRZzb'
-           }
-       };
+               // For v3 models
+        const data = {
+            inputs: {
+                text: 'The first move is what sets everything in motion.',
+                voice_id: 'JBFqnCBsd6RMkjVDRZzb'
+            },
+            model_id: 'eleven_v3'
+        };
        
                // For other models (v1, v2)
         // const data = {
         //     text: 'The first move is what sets everything in motion.',
         //     voice_id: 'JBFqnCBsd6RMkjVDRZzb',
-        //     model_id: 'ttslab_multilingual_v2',
+        //     model_id: 'eleven_flash_v2_5',
         //     output_format: 'mp3_44100_128',
         //     config: {
         //         stability: 0.5,
@@ -146,19 +148,20 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
        curl -X POST "https://api.ttslab.com/v1/text-to-speech" \
          -H "X-API-KEY: $TTSLAB_API_KEY" \
          -H "Content-Type: application/json" \
-         # For v3 models
-         -d '{
-           "inputs": {
-             "text": "The first move is what sets everything in motion.",
-             "voice_id": "JBFqnCBsd6RMkjVDRZzb"
-           }
-         }' \
+                   # For v3 models
+          -d '{
+            "inputs": {
+              "text": "The first move is what sets everything in motion.",
+              "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+            },
+            "model_id": "eleven_v3"
+          }' \
          
                    # For other models (v1, v2)
           # -d '{
           #   "text": "The first move is what sets everything in motion.",
           #   "voice_id": "JBFqnCBsd6RMkjVDRZzb",
-          #   "model_id": "ttslab_multilingual_v2",
+          #   "model_id": "eleven_flash_v2_5",
           #   "output_format": "mp3_44100_128",
           #   "config": {
           #     "stability": 0.5,
@@ -208,14 +211,15 @@ TTSLab supports different model versions with different request formats:
 
 ### v3 Models
 
-Use the simplified `inputs` format:
+Use the simplified `inputs` format with model_id:
 
 ```json
 {
   "inputs": {
     "text": "Your text here",
     "voice_id": "voice_id_here"
-  }
+  },
+  "model_id": "eleven_v3"
 }
 ```
 
@@ -227,7 +231,7 @@ Use the traditional format with additional parameters and config:
 {
   "text": "Your text here",
   "voice_id": "voice_id_here",
-  "model_id": "ttslab_multilingual_v2",
+  "model_id": "eleven_flash_v2_5",
   "output_format": "mp3_44100_128",
   "config": {
     "stability": 0.5,
