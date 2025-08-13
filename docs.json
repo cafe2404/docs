@@ -48,17 +48,17 @@
       "anchors": [
         {
           "anchor": "Overview",
-          "href": "/",
+          "page": "index",
           "icon": "book-open-cover"
         },
         {
           "anchor": "Quickstart",
-          "href": "/quickstart",
+          "page": "quickstart",
           "icon": "newspaper"
         },
         {
           "anchor": "Models",
-          "href": "/models",
+          "page": "models",
           "icon": "slack"
         }
       ]
