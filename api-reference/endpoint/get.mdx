@@ -1,4 +1,182 @@
 ---
-title: 'Get Plants'
-openapi: 'GET /plants'
+title: Get History
+subtitle: Retrieve text-to-speech generation history
 ---
+
+## Get History
+
+Retrieve a list of your text-to-speech generation history.
+
+<RequestExample>
+```bash
+curl -X GET "https://api.elevenlabs8.com/api/elevenlabs-histories/" \
+  -H "X-API-KEY: your_api_key_here"
+```
+
+```python
+import requests
+
+url = "https://api.elevenlabs8.com/api/elevenlabs-histories/"
+headers = {
+    "X-API-KEY": "your_api_key_here"
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+```javascript
+const fetch = require("node-fetch");
+
+const url = "https://api.elevenlabs8.com/api/elevenlabs-histories/";
+const headers = {
+  "X-API-KEY": "your_api_key_here",
+};
+
+fetch(url, { headers })
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+</RequestExample>
+
+### Query Parameters
+
+| Parameter | Type    | Required | Description                                      |
+| --------- | ------- | -------- | ------------------------------------------------ |
+| `page`    | integer | No       | Page number (default: 1)                         |
+| `limit`   | integer | No       | Items per page (default: 20, max: 100)           |
+| `status`  | string  | No       | Filter by status (completed, processing, failed) |
+| `model`   | string  | No       | Filter by model ID                               |
+| `voice`   | string  | No       | Filter by voice ID                               |
+
+### Response
+
+<ResponseExample>
+```json
+{
+  "success": true,
+  "data": {
+    "results": [
+      {
+        "id": "history_id_123",
+        "user": {
+          "fullname": "John Doe",
+          "avatar": "https://api.elevenlabs8.com/media/avatars/john.jpg"
+        },
+        "history_id": "unique_history_id",
+        "prompt": "Hello, this is a test message.",
+        "model": "eleven_v3",
+        "voice": "Rachel",
+        "config": {
+          "stability": 0.5,
+          "similarity_boost": 0.75,
+          "style": 0.0,
+          "use_speaker_boost": true
+        },
+        "credits_used": 1,
+        "status": "completed",
+        "shared_url": "https://ttslab.com/share/audio_id",
+        "created_at": "2024-01-01T12:00:00Z",
+        "audio_url": "https://api.elevenlabs8.com/media/audio/output.mp3"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 20,
+      "total": 150,
+      "pages": 8
+    }
+  },
+  "message": "History retrieved successfully"
+}
+```
+</ResponseExample>
+
+## Get History Item
+
+Retrieve details of a specific history item.
+
+<RequestExample>
+```bash
+curl -X GET "https://api.elevenlabs8.com/api/elevenlabs-histories/elevenlabs-histories_id_123" \
+  -H "X-API-KEY: your_api_key_here"
+```
+
+```python
+import requests
+
+history_id = "history_id_123"
+url = f"https://api.elevenlabs8.com/api/elevenlabs-histories/{history_id}"
+headers = {
+    "X-API-KEY": "your_api_key_here"
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+</RequestExample>
+
+### Response
+
+<ResponseExample>
+```json
+{
+  "success": true,
+  "data": {
+    "id": "history_id_123",
+    "user": {
+      "fullname": "John Doe",
+      "avatar": "https://api.elevenlabs8.com/media/avatars/john.jpg"
+    },
+    "history_id": "unique_history_id",
+    "prompt": "Hello, this is a test message.",
+    "model": "eleven_v3",
+    "voice": "Rachel",
+    "config": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0.0,
+      "use_speaker_boost": true
+    },
+    "credits_used": 1,
+    "status": "completed",
+    "shared_url": "https://ttslab.com/share/audio_id",
+    "created_at": "2024-01-01T12:00:00Z",
+    "audio_url": "https://api.elevenlabs8.com/media/audio/output.mp3",
+    "duration": 3.5,
+    "file_size": 52428
+  },
+  "message": "History item retrieved successfully"
+}
+```
+</ResponseExample>
+
+### History Properties
+
+| Property       | Type    | Description                           |
+| -------------- | ------- | ------------------------------------- |
+| `id`           | string  | Unique history identifier             |
+| `user`         | object  | User information                      |
+| `history_id`   | string  | History tracking ID                   |
+| `prompt`       | string  | The text that was converted to speech |
+| `model`        | string  | Model used for generation             |
+| `voice`        | string  | Voice used for generation             |
+| `config`       | object  | Configuration parameters used         |
+| `credits_used` | integer | Number of credits consumed            |
+| `status`       | string  | Status of the generation              |
+| `shared_url`   | string  | Public shareable URL                  |
+| `created_at`   | string  | Creation timestamp                    |
+| `audio_url`    | string  | Direct URL to download audio          |
+| `duration`     | float   | Audio duration in seconds             |
+| `file_size`    | integer | Audio file size in bytes              |
+
+### Status Values
+
+| Status       | Description                       |
+| ------------ | --------------------------------- |
+| `completed`  | Generation completed successfully |
+| `processing` | Generation is in progress         |
+| `failed`     | Generation failed                 |
+| `cancelled`  | Generation was cancelled          |

@@ -9,7 +9,7 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
 
 <Steps>
     <Step title="Create an API key">
-      [Create an API key in the dashboard here](https://app.elvenlabs8.com/app/settings/api-keys), which you'll use to securely [access the API](/docs/api-reference/authentication).
+      [Create an API key in the dashboard here](https://app.elevenlabs8.com/app/settings/api-keys), which you'll use to securely [access the API](/docs/api-reference/authentication).
       
       Store the key as a managed secret and pass it in the `X-API-KEY` header with your requests.
       
@@ -31,7 +31,7 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
        
        api_key = os.getenv("ELEVENLABS8_API_KEY")
        
-       url = "https://api.app.elvenlabs8.com/v1/text-to-speech"
+       url = "https://api.elevenlabs8.com/v1/text-to-speech"
        
        headers = {
            "X-API-KEY": api_key,
@@ -84,7 +84,7 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
        
        const apiKey = process.env.ELEVENLABS8_API_KEY;
        
-       const url = 'https://api.app.elvenlabs8.com/v1/text-to-speech';
+       const url = 'https://api.elevenlabs8.com/v1/text-to-speech';
        
        const headers = {
            'X-API-KEY': apiKey,
@@ -145,7 +145,7 @@ The TTSLab API provides a simple interface to state-of-the-art audio [models](/d
        ```
        
        ```bash
-       curl -X POST "https://api.app.elvenlabs8.com/v1/text-to-speech" \
+       curl -X POST "https://api.elevenlabs8.com/v1/text-to-speech" \
          -H "X-API-KEY: $ELEVENLABS8_API_KEY" \
          -H "Content-Type: application/json" \
                    # For v3 models
@@ -258,7 +258,7 @@ The API returns a JSON object with the following structure:
   "id": "history_id_here",
   "user": {
     "fullname": "User Full Name",
-    "avatar": "https://api.app.elvenlabs8.com/media/avatars/user.jpg"
+    "avatar": "https://api.elevenlabs8.com/media/avatars/user.jpg"
   },
   "history_id": "unique_history_id",
   "prompt": "The first move is what sets everything in motion.",
@@ -272,9 +272,9 @@ The API returns a JSON object with the following structure:
   },
   "credits_used": 1,
   "status": "completed",
-  "shared_url": "https://app.elvenlabs8.com/share/audio_id",
+  "shared_url": "https://app.elevenlabs8.com/share/audio_id",
   "created_at": "2024-01-01T12:00:00Z",
-  "audio_url": "https://api.app.elvenlabs8.com/media/audio/output.mp3"
+  "audio_url": "https://api.elevenlabs8.com/media/audio/output.mp3"
 }
 ```
 

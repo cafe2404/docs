@@ -38,6 +38,7 @@
               "api-reference/endpoint/create",
               "api-reference/endpoint/models",
               "api-reference/endpoint/voices",
+              "api-reference/endpoint/user",
               "api-reference/endpoint/get"
             ]
           },
