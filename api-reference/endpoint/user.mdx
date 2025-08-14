@@ -9,14 +9,14 @@ Retrieve the current user's profile and subscription information.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.elevenlabs8.com/api/user/" \
+curl -X GET "https://api.elevenlabs8.com/api/users/me/" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
 ```python
 import requests
 
-url = "https://api.elevenlabs8.com/api/user/"
+url = "https://api.elevenlabs8.com/api/users/me/"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
@@ -28,7 +28,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.elevenlabs8.com/api/user/';
+const url = 'https://api.elevenlabs8.com/api/users/me/';
 const headers = {
     'X-API-KEY': 'your_api_key_here'
 };

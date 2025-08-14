@@ -9,14 +9,14 @@ Retrieve a list of all available text-to-speech models.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.elevenlabs8.com/api/models/" \
+curl -X GET "https://api.elevenlabs8.com/api/tts/models/" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
 ```python
 import requests
 
-url = "https://api.elevenlabs8.com/api/models/"
+url = "https://api.elevenlabs8.com/api/tts/models/"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
@@ -28,7 +28,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.elevenlabs8.com/api/models/';
+const url = 'https://api.elevenlabs8.com/api/tts/models/';
 const headers = {
     'X-API-KEY': 'your_api_key_here'
 };
