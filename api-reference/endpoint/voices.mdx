@@ -9,14 +9,14 @@ Retrieve a list of all available voices.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.elevenlabs8.com/api/voices/" \
+curl -X GET "https://api.elevenlabs8.com/api/tts/voices/" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
 ```python
 import requests
 
-url = "https://api.elevenlabs8.com/api/voices/"
+url = "https://api.elevenlabs8.com/api/tts/voices/"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
@@ -28,7 +28,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.elevenlabs8.com/api/voices/';
+const url = 'https://api.elevenlabs8.com/api/tts/voices/';
 const headers = {
     'X-API-KEY': 'your_api_key_here'
 };
@@ -183,7 +183,7 @@ Retrieve details of a specific voice.
 
 <RequestExample>
 ```bash
-curl -X GET "https://api.elevenlabs8.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
+curl -X GET "https://api.elevenlabs8.com/api/tts/voices/JBFqnCBsd6RMkjVDRZzb" \
   -H "X-API-KEY: your_api_key_here"
 ```
 
@@ -191,7 +191,7 @@ curl -X GET "https://api.elevenlabs8.com/api/voices/JBFqnCBsd6RMkjVDRZzb" \
 import requests
 
 voice_id = "JBFqnCBsd6RMkjVDRZzb"
-url = f"https://api.elevenlabs8.com/api/voices/{voice_id}"
+url = f"https://api.elevenlabs8.com/api/tts/voices/{voice_id}"
 headers = {
     "X-API-KEY": "your_api_key_here"
 }
