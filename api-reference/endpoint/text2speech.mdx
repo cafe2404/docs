@@ -9,7 +9,7 @@ Convert text to speech using TTSLab's advanced AI models.
 
 <RequestExample>
 ```bash
-curl -X POST "https://api.elevenlabs8.com/v1/text-to-speech" \
+curl -X POST "https://api.elevenlabs8.com/api/tts/audio-generate/" \
   -H "X-API-KEY: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -24,7 +24,7 @@ curl -X POST "https://api.elevenlabs8.com/v1/text-to-speech" \
 ```python
 import requests
 
-url = "https://api.elevenlabs8.com/v1/text-to-speech"
+url = "https://api.elevenlabs8.com/api/tts/audio-generate/"
 headers = {
     "X-API-KEY": "your_api_key_here",
     "Content-Type": "application/json"
@@ -60,7 +60,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://api.elevenlabs8.com/v1/text-to-speech';
+const url = 'https://api.elevenlabs8.com/api/tts/audio-generate/';
 const headers = {
     'X-API-KEY': 'your_api_key_here',
     'Content-Type': 'application/json'
