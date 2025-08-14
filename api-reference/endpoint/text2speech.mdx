@@ -13,10 +13,16 @@ curl -X POST "https://api.elevenlabs8.com/api/tts/audio-generate/" \
   -H "X-API-KEY: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "inputs": {
-      "text": "Hello, this is a test message.",
-      "voice_id": "JBFqnCBsd6RMkjVDRZzb"
-    },
+    "inputs": [
+      {
+        "text": "Hello, this is a test message.",
+        "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+      },
+      {
+        "text": "Hello, this is a test message.",
+        "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+      }
+    ],
     "model_id": "eleven_v3"
   }'
 ```
