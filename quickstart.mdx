@@ -38,16 +38,23 @@ The Elevenlabs8 API provides a simple interface to state-of-the-art audio [model
            "Content-Type": "application/json"
        }
        
-               # For v3 models
+        # For v3 models
         data = {
-            "inputs": {
+            "inputs": [
+              {
                 "text": "The first move is what sets everything in motion.",
                 "voice_id": "JBFqnCBsd6RMkjVDRZzb"
-            },
+              },
+              {
+                "text": "The second move is what sets everything in motion.",
+                "voice_id": "2EiwWnXFnvU5JabPnv8n"
+              },
+            ],
+
             "model_id": "eleven_v3"
         }
        
-               # For other models (v1, v2)
+        # For other models (v1, v2)
         # data = {
         #     "text": "The first move is what sets everything in motion.",
         #     "voice_id": "JBFqnCBsd6RMkjVDRZzb",
@@ -93,7 +100,8 @@ The Elevenlabs8 API provides a simple interface to state-of-the-art audio [model
        
                // For v3 models
         const data = {
-            inputs: [{
+            inputs: [
+              {
                 text: 'The first move is what sets everything in motion.',
                 voice_id: 'JBFqnCBsd6RMkjVDRZzb'
               },
@@ -155,10 +163,16 @@ The Elevenlabs8 API provides a simple interface to state-of-the-art audio [model
          -H "Content-Type: application/json" \
                    # For v3 models
           -d '{
-            "inputs": {
-              "text": "The first move is what sets everything in motion.",
-              "voice_id": "JBFqnCBsd6RMkjVDRZzb"
-            },
+            "inputs": [
+              {
+                "text": "The first move is what sets everything in motion.",
+                "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+              },
+              {
+                "text": "The second move is what sets everything in motion.",
+                "voice_id": "2EiwWnXFnvU5JabPnv8n"
+              },
+            ],
             "model_id": "eleven_v3"
           }' \
          
@@ -220,10 +234,16 @@ Use the simplified `inputs` format with model_id:
 
 ```json
 {
-  "inputs": {
-    "text": "Your text here",
-    "voice_id": "voice_id_here"
-  },
+  "inputs": [
+      {
+        "text": "The first move is what sets everything in motion.",
+        "voice_id": "JBFqnCBsd6RMkjVDRZzb"
+      },
+      {
+        "text": "The second move is what sets everything in motion.",
+        "voice_id": "2EiwWnXFnvU5JabPnv8n"
+      },
+  ],
   "model_id": "eleven_v3"
 }
 ```
